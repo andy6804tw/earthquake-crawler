@@ -30,7 +30,7 @@ After completing the [installation](#installation) step, you're ready to start t
 
 成功取得 body 接下來就要利用 `cheerio` 來爬取資料了，首先我們要知道我們要爬取哪一個標籤內容，打開瀏覽器 > 右鍵 > 檢查，可以發先我們要的資料被一個 Table 包起來此 Table 的類別名稱為(BoxTable)然而裡面每一列的資料又被 tr 包起來，所以我們 query 的路徑為 `$(".BoxTable tr")`，成功取得每一列的資料後利用陣列走訪方式讀取每一列資訊，然而每一列有多個欄位所以再用 `.find('td')` 找到每個欄位內容，才能依序的解析個個欄位內容，最後就把結果利用 ES6 的 `Object.assign()` 產生一筆物件把所有結果塞進去並推入 result 陣列中。
 
-<img src="/images/posts/web/2018/img1070211-1.png">
+<img src="/screenshoot/img1070211-1.png">
 
 整個陣列走訪完成後使用 `fs.writeFileSync()` 把陣列(result)寫入 result.json 檔案中，最後我們設定每半小時呼叫此函式固定爬蟲撈取資料 `setInterval(earthquake, 30 * 60 * 1000)`。
 
@@ -75,5 +75,5 @@ earthquake();
 setInterval(earthquake, 30 * 60 * 1000);
 ```
 
-<img src="/images/posts/web/2018/img1070211-2.png" width="600">
-<img src="/images/posts/web/2018/img1070211-3.png">
+<img src="/screenshoot/img1070211-2.png" width="600">
+<img src="/screenshoot/img1070211-3.png">
